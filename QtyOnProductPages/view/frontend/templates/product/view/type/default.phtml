@@ -1,0 +1,78 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php $_product = $block->getProduct() ?>
+
+<?php if ($block->displayProductStockStatus()) :?>
+    <?php if ($_product->isAvailable()) :?>
+        <?php
+        $_configChild = $_product->getTypeInstance()->getUsedProducts($_product);
+        $childProdArray = [];
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        foreach ($_configChild as $childProduct) {
+            $childProductId = intval($childProduct->getId());
+            $stockInfo = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($childProductId);
+            $stockqty = (int)$stockInfo->getQty();
+            array_push($childProdArray, [$childProduct->getSku(),$stockqty]);
+        }
+        ?>
+        <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+            <span id="dynamic-qty-item"><?= $block->escapeHtml(__('In stock')) ?></span>
+        </div>
+    <?php else :?>
+        <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+            <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
+<div id="HiddenElementsQty" style="display: none">
+    <?php
+    foreach ($childProdArray as $item) {
+        echo("<p id='$item[0]'>" . $item[1] . "</p>");
+    }
+    ?>
+</div>
+
+<script>
+    require([
+        "domReady!",
+        'jquery'
+    ], function(domReady, $) {
+        setTimeout(function(){
+            let jqQtyElem = $("#dynamic-qty-item");
+            jqQtyElem.fadeTo("slow", 0.15);
+            var elements = document.getElementsByClassName("swatch-option");
+            let qtyElem = document.getElementById('dynamic-qty-item');
+            let skuElem = document.querySelector('.value').innerHTML;
+            if(document.getElementById(skuElem) === null) {
+                qtyElem.innerHTML = "IN STOCK";
+                jqQtyElem.fadeTo("slow", 1);
+            } else {
+                qtyElem.innerHTML = "QTY IN STOCK: " + document.getElementById(skuElem).innerHTML;
+                jqQtyElem.fadeTo("slow", 1);
+            }
+
+            var myFunction = function() {
+                jqQtyElem.fadeTo("slow", 0.15);
+                setTimeout(function(){
+                    skuElem = document.querySelector('.value').innerHTML;
+                    qtyElem.innerHTML = "QTY IN STOCK: " + document.getElementById(skuElem).innerHTML;
+                    jqQtyElem.fadeTo("slow", 1);
+                }, 1000);
+            };
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].addEventListener('click', myFunction, false);
+            }
+
+        }, 3000);
+
+    });
+
+
+</script>
