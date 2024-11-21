@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="buildingmaterials" translate="label" sortOrder="200" class="buildingmaterials-extensions">
+            <label>Menu Banner Customization</label>
+        </tab>
+        <section id="menu_banners" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Menu Banner Customization</label>
+            <tab>buildingmaterials</tab>
+            <resource>BuildingMaterials_MenuCustomization::config_menucustomization</resource>
+            <group id="bottom_banner_inputs" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Bottom Banner</label>
+                <comment><![CDATA[<strong>1:</strong> Upload image you want to use in banner<br/><strong>2:</strong> Click save in the top right<br/><strong>3:</strong> Under "Image to use" select the image you just uploaded]]></comment>
+                <field id="ranges" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ranges</label>
+                    <frontend_model>BuildingMaterials\MenuCustomization\Block\Adminhtml\Form\Field\Ranges</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+                <field id="upload_image_id" translate="label comment" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Bottom Banner</label>
+                    <backend_model>BuildingMaterials\MenuCustomization\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">wysiwyg/Banners/MenuBanners</base_url>
+                    <comment></comment>
+                </field>
+            </group>
+            <group id="side_banner_inputs" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Side Banner</label>
+                <comment><![CDATA[<strong>1:</strong> Upload image you want to use in banner<br/><strong>2:</strong> Click save in the top right<br/><strong>3:</strong> Under "Image to use" select the image you just uploaded]]></comment>
+                <field id="ranges" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ranges</label>
+                    <frontend_model>BuildingMaterials\MenuCustomization\Block\Adminhtml\Form\Field\Ranges</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment><![CDATA[If adding an image the <strong>*max image height is 395px*</strong> for the side banner<br/>When adding image use direct image path. For example if you are adding an image banner. Under insert image in the WYSIWYG editor the path will be "pub/media/wysiwyg/Banners/[BANNER_NAME.jpg]"]]></comment>
+                </field>
+                <field id="upload_image_id" translate="label comment" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Side Banner</label>
+                    <backend_model>BuildingMaterials\MenuCustomization\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">wysiwyg/Banners/MenuBanners</base_url>
+                    <comment></comment>
+                </field>
+            </group>
+            <group id="show_more" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Show More</label>
+                <field id="cut_off" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Amount of items before the "show more" button is shown</label>
+                    <comment>Cut off point for elements</comment>
+                </field>
+                <field id="cut_off_text_more" translate="label comment" sortOrder="2" type="text" showInStore="1" showInDefault="1" >
+                    <label>"Show More" Text</label>
+                    <frontend_model>BuildingMaterials\MenuCustomization\Block\Adminhtml\System\Config\Editor</frontend_model>
+                    <comment>Text to show on menu when cut off point is met</comment>
+                </field>
+                <field id="cut_off_text_less" translate="label comment" sortOrder="2" type="text" showInStore="1" showInDefault="1" >
+                    <label>"Show Less" Text</label>
+                    <frontend_model>BuildingMaterials\MenuCustomization\Block\Adminhtml\System\Config\Editor</frontend_model>
+                    <comment>Text to show on menu when cut off point is met and show more is pressed</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

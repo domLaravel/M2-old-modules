@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="buildingmaterials" frontName="buildingmaterials">
+            <module name="BuildingMaterials_CheqApi"/>
+        </route>
+        <route id="customroute" frontName="customroute">
+            <module name="BuildingMaterials_CheqApi" />
+        </route>
+        <route id="captcharoute" frontName="captcharoute">
+            <module name="BuildingMaterials_CheqApi" />
+        </route>
+    </router>
+</config>

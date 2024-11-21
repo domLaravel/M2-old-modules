@@ -1,0 +1,62 @@
+<div id="ct-modal" class="ct-modal" style="display:none;">
+  <div class="ct-modal-content">
+    <div class="ct-modal-header">
+      <img class="ct-modal-logo" src="<?php echo $block->getViewFileUrl('BuildingMaterials_CustomerType::images/logo/BuildingMaterialsLogo.png'); ?>" alt="Building Materials Logo" />
+    </div>
+    <div class="ct-modal-body">
+      <p class="select-text">Please choose one of the following options:</p>
+      <div class="modal-buttons">
+        <a href="#" class="btn-diy">Continue as DIY</a>
+        <a href="#" class="btn-trade">Continue as Trade</a>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-continue"><a href="#" class="btn-neither">Continue as neither</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+require(['jquery', 'Magento_Ui/js/modal/modal'], function($, modal) {
+    $(window).load(function() {
+        dataLayer.push({'event': 'optimize.activate.customertype'});
+
+        // Enable the line below to test the modal
+        // document.querySelector('body').classList.add('add-customer-type-modal');
+        var cookieValue = "<?php echo $block->getCookieValue(); ?>";
+        if ((cookieValue == '' || cookieValue == null) && document.querySelector('body').classList.contains('add-customer-type-modal')) {
+            document.querySelector('.ct-modal').style.display = 'block';
+            var options = {
+                type: 'popup',
+                modalClass: 'customer-type-modal',
+                clickableOverlay: false,
+                responsive: true,
+                buttons: []
+            };
+            var popup = modal(options, $('#ct-modal'));
+            $('#ct-modal').modal('openModal');
+        }
+
+        $('.modal-buttons a').click(function(e) {
+            e.preventDefault();
+            var btnValue = $(this).hasClass('btn-diy') ? 'DIY' : ($(this).hasClass('btn-trade') ? 'Trade' : 'None');
+            setCookie('BMN_Type', btnValue, 30);
+            $('#ct-modal').modal('closeModal');
+        });
+        $('.btn-neither').click(function(e) {
+            e.preventDefault();
+            setCookie('BMN_Type', 'None', 30);
+            $('#ct-modal').modal('closeModal');
+        });
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+    });
+});
+</script>

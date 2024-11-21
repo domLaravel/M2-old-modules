@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="buildingmaterials" translate="label" sortOrder="200" class="buildingmaterials-extensions">
+            <label>Building Materials</label>
+        </tab>
+        <section id="cheq_api" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>CHEQ API</label>
+            <tab>buildingmaterials</tab>
+            <resource>BuildingMaterials_CheqApi::config_bulkredirects</resource>
+            <group id="api_key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>API Key</label>
+                <field id="api_key_input" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Input API Key</label>
+                    <comment>Max Length 50 characters</comment>
+                </field>
+            </group>
+            <group id="tag_hash" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Tag Hash</label>
+                <field id="tag_hash_input" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Input tag hash</label>
+                    <comment>Max Length 50 characters</comment>
+                </field>
+            </group>
+            <group id="404_types" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>404 Error Types</label>
+                <field id="404_types_input" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Input error types</label>
+                    <comment>e.g. 2,3,6,7,10,11,16,18. These error types will redirect to the 404 page</comment>
+                </field>
+            </group>
+            <group id="captcha_types" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Captcha Error Types</label>
+                <field id="captcha_types_input" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Input captcha types</label>
+                    <comment>e.g. 4,5,8,9,12,13,14,15,17. These error types will redirect to the captcha page</comment>
+                </field>
+            </group>
+            <group id="element_array" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Element Array</label>
+                <field id="element_array_input" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Elements</label>
+                    <comment>Elements also need an event_type, add this after the element seperated by an equals "=" and then each element is seperated by a comma "," and to add a url for the event seperate with "|" e.g.:#login-button=login-page|[URL],.forgot-password=forgot-password|[URL] </comment>
+                </field>
+            </group>
+            <group id="custom_element_array" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Element Array</label>
+                <field id="custom_element_array_input" translate="label comment" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Elements (JavaScript/jQuery only)</label>
+                    <comment>This is for custom js that will be injected into all pages. *ONLY USE SINGLE QUOTES, NOT DOUBLE*</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

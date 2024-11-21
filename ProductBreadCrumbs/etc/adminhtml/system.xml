@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="buildingmaterials" translate="label" sortOrder="200" class="buildingmaterials-extensions">
+            <label>Menu Banner Customization</label>
+        </tab>
+        <section id="product_breadcrumbs" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Product Breadcrumbs Customization</label>
+            <tab>buildingmaterials</tab>
+            <resource>BuildingMaterials_ProductBreadCrumbs::config_ProductBreadCrumbs</resource>
+            <group id="product_breadcrumbs" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>BreadCrumbs</label>
+                <field id="breadcrumb_cutoff" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Breadcrumb Cutoff Point</label>
+                </field>
+                <field id="breadcrumb_cutoff_product_name" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Show product name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

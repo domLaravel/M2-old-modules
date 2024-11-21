@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove header and footer -->
+        <referenceBlock name="header.container" remove="true" />
+        <referenceBlock name="footer" remove="true" />
+
+        <!-- Additional elements to remove -->
+        <referenceBlock name="page.top" remove="true" />
+        <referenceBlock name="footer.links" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceContainer name="sidebar.additional" remove="true" />
+        <referenceContainer name="before.body.end" remove="true" />
+
+        <!-- Add custom captcha block -->
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="cheq.captcha.container" template="BuildingMaterials_CheqApi::cheqCaptcha.phtml">
+                <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-" cacheable="false">
+                    <action method="setFormId">
+                        <argument name="formId" xsi:type="string">your_form_id_here</argument>
+                    </action>
+                    <action method="setImgWidth">
+                        <argument name="width" xsi:type="string">230</argument>
+                    </action>
+                    <action method="setImgHeight">
+                        <argument name="width" xsi:type="string">50</argument>
+                    </action>
+                </block>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

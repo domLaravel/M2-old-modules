@@ -1,0 +1,35 @@
+<script>
+require([
+    'jquery',
+    'prototype',
+], function(jQuery){
+    function function_name() {
+        var selection = document.getElementById("SelectorRanges").value;
+
+        new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+            method: 'POST',
+            dataType: 'text',
+            parameters: {selections: selection},
+            onSuccess: function(data) {
+                var response = JSON.parse(data['responseText']);
+                if(response == 1) {
+                    window.location.href = location.protocol + '//' + location.host + "/pub/media/redirectCSVs/myCsv.csv";//redirect to csv file location
+                } else {
+                    //errors
+                    alert("There has been an error. Please check console.");
+                    response.forEach(element => console.log(element[0]));
+                }
+            },
+            onFailure: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    jQuery('#validate-download-btn').click(function () {
+        function_name ();
+    });
+});
+</script>
+
+<?php echo $block->getButtonHtml() ?>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="buildingmaterials" translate="label" sortOrder="200" class="buildingmaterials-extensions">
+            <label>Building Materials</label>
+        </tab>
+        <section id="url_rewrites_bmuk" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Bulk Product Rewrites</label>
+            <tab>buildingmaterials</tab>
+            <resource>BuildingMaterials_BulkRedirects::config_bulkredirects</resource>
+            <group id="url_rewrites_input" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Upload CSV File</label>
+                <field id="url_rewrites_file" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="10"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload CSV File</label>
+                    <backend_model>BuildingMaterials\BulkRedirects\Model\Config\Backend\File</backend_model>
+                    <upload_dir config="system">csvUploads</upload_dir>
+                </field>
+            </group>
+            <group id="url_rewrites_input_button" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Download Formatted CSV</label>
+                <field id="ranges" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CSV Files</label>
+                    <frontend_model>BuildingMaterials\BulkRedirects\Block\System\Config\Select</frontend_model>
+                </field>
+                <field id="build_indexes" translate="label comment tooltip" type="button" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Rebuild Product Urls</label>
+                <frontend_model>BuildingMaterials\BulkRedirects\Block\System\Config\Button</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

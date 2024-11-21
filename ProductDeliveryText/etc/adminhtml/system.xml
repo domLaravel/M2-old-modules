@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="buildingmaterials" translate="label" sortOrder="200" class="buildingmaterials-extensions">
+            <label>Building Materials</label>
+        </tab>
+        <section id="delivery_text" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Delivery Text</label>
+            <tab>buildingmaterials</tab>
+            <resource>BuildingMaterials_ProductDeliveryText::config_productdeliverytext</resource>
+            <group id="delivery_text_input" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Delivery Texts</label>
+                <field id="delivery_text_field" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Text To Show On Product Pages</label>
+                    <comment>Max Length 50 characters</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

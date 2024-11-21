@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove header and footer -->
+        <referenceBlock name="header.container" remove="true" />
+        <referenceBlock name="footer" remove="true" />
+
+        <!-- Additional elements to remove -->
+        <referenceBlock name="page.top" remove="true" />
+        <referenceBlock name="footer.links" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceContainer name="sidebar.additional" remove="true" />
+        <referenceContainer name="before.body.end" remove="true" />
+
+        <!-- Add custom 404 block -->
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="custom.404" template="BuildingMaterials_CheqApi::404.phtml"/>
+        </referenceContainer>
+
+    </body>
+</page>
